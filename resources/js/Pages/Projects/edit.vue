@@ -1,15 +1,15 @@
 <script setup>
-    import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-    import InputError from '@/Components/InputError.vue';
-    import InputLabel from '@/Components/InputLabel.vue';
-    import PrimaryButton from '@/Components/PrimaryButton.vue';
-    import TextInput from '@/Components/TextInput.vue';
-    import { Head, useForm, router } from '@inertiajs/vue3';
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import InputError from "@/Components/InputError.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import TextInput from "@/Components/TextInput.vue";
+import { Head, useForm, router } from "@inertiajs/vue3";
 
 const props = defineProps({
-        skills: Array,
-        project: Object,
-    })
+    skills: Array,
+    project: Object,
+});
 const form = useForm({
     name: props.project?.name,
     image: null,
@@ -18,8 +18,8 @@ const form = useForm({
 });
 
 const submit = () => {
-    router.post(`/projects/ ${props.project.id}`,{
-        _method: 'put',
+    router.post(`/projects/ ${props.project.id}`, {
+        _method: "put",
         name: form.name,
         image: form.image,
         skill_id: form.skill_id,
@@ -29,12 +29,13 @@ const submit = () => {
 </script>
 
 <template>
-
-<Head title="New Projects" />
+    <Head title="New Projects" />
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            <h2
+                class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight"
+            >
                 New Projects
             </h2>
         </template>
@@ -44,13 +45,24 @@ const submit = () => {
                 <form class="p-4" @submit.prevent="submit">
                     <div>
                         <InputLabel for="skill_id" value="Skill" />
-                        <select v-model="form.skill_id" id="skill_id" name="skill_id"
-                        class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300
-                        focus:outline-none focus:ring-indigo-500 focus:border-indigo-500
-                        sm:text-sm rounded-md">
-                            <option v-for="skill in skills" :key="skill.id" :value="skill.id">{{ skill.name }}</option>
+                        <select
+                            v-model="form.skill_id"
+                            id="skill_id"
+                            name="skill_id"
+                            class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                        >
+                            <option
+                                v-for="skill in skills"
+                                :key="skill.id"
+                                :value="skill.id"
+                            >
+                                {{ skill.name }}
+                            </option>
                         </select>
-                        <InputError class="mt-2" :message="$page.props.errors.skill_id" />
+                        <InputError
+                            class="mt-2"
+                            :message="$page.props.errors.skill_id"
+                        />
                     </div>
                     <div>
                         <InputLabel for="name" value="Name" />
@@ -62,7 +74,10 @@ const submit = () => {
                             autofocus
                             autocomplete="name"
                         />
-                        <InputError class="mt-2" :message="$page.props.errors.name" />
+                        <InputError
+                            class="mt-2"
+                            :message="$page.props.errors.name"
+                        />
                     </div>
                     <div>
                         <InputLabel for="project_url" value="URL" />
@@ -73,7 +88,10 @@ const submit = () => {
                             v-model="form.project_url"
                             autocomplete="project_url"
                         />
-                        <InputError class="mt-2" :message="$page.props.errors.project_url" />
+                        <InputError
+                            class="mt-2"
+                            :message="$page.props.errors.project_url"
+                        />
                     </div>
                     <div class="mt-2">
                         <InputLabel for="image" value="Image" />
@@ -83,12 +101,18 @@ const submit = () => {
                             class="mt-1 block w-full"
                             @input="form.image = $event.target.files[0]"
                         />
-                        <InputError class="mt-2" :message="$page.props.errors.image" />
+                        <InputError
+                            class="mt-2"
+                            :message="$page.props.errors.image"
+                        />
                     </div>
-                    
 
                     <div class="flex items-center justify-end mt-4">
-                        <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                        <PrimaryButton
+                            class="ml-4"
+                            :class="{ 'opacity-25': form.processing }"
+                            :disabled="form.processing"
+                        >
                             Update
                         </PrimaryButton>
                     </div>
@@ -97,6 +121,3 @@ const submit = () => {
         </div>
     </AuthenticatedLayout>
 </template>
-
-
-

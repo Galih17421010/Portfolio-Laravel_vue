@@ -1,10 +1,10 @@
 <script setup>
-    import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-    import InputError from '@/Components/InputError.vue';
-    import InputLabel from '@/Components/InputLabel.vue';
-    import PrimaryButton from '@/Components/PrimaryButton.vue';
-    import TextInput from '@/Components/TextInput.vue';
-    import { Head, useForm } from '@inertiajs/vue3';
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import InputError from "@/Components/InputError.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import TextInput from "@/Components/TextInput.vue";
+import { Head, useForm } from "@inertiajs/vue3";
 
 const form = useForm({
     name: "",
@@ -12,17 +12,18 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('skills.store'));
+    form.post(route("skills.store"));
 };
 </script>
 
 <template>
-
-<Head title="New Skills" />
+    <Head title="New Skills" />
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            <h2
+                class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight"
+            >
                 New Skills
             </h2>
         </template>
@@ -52,10 +53,13 @@ const submit = () => {
                         />
                         <InputError class="mt-2" :message="form.errors.image" />
                     </div>
-                    
 
                     <div class="flex items-center justify-end mt-4">
-                        <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                        <PrimaryButton
+                            class="ml-4"
+                            :class="{ 'opacity-25': form.processing }"
+                            :disabled="form.processing"
+                        >
                             Store
                         </PrimaryButton>
                     </div>
@@ -64,6 +68,3 @@ const submit = () => {
         </div>
     </AuthenticatedLayout>
 </template>
-
-
-

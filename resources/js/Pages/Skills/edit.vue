@@ -1,15 +1,14 @@
 <script setup>
-    import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-    import InputError from '@/Components/InputError.vue';
-    import InputLabel from '@/Components/InputLabel.vue';
-    import PrimaryButton from '@/Components/PrimaryButton.vue';
-    import TextInput from '@/Components/TextInput.vue';
-    import { Head, useForm, router } from '@inertiajs/vue3';
-    // import { Inertia} from '@inertiajs/inertia';
-
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import InputError from "@/Components/InputError.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import TextInput from "@/Components/TextInput.vue";
+import { Head, useForm, router } from "@inertiajs/vue3";
+// import { Inertia} from '@inertiajs/inertia';
 
 const props = defineProps({
-    skill:Object,
+    skill: Object,
 });
 
 const form = useForm({
@@ -18,21 +17,22 @@ const form = useForm({
 });
 
 const submit = () => {
-    router.post(`/skills/ ${props.skill.id}`,{
-        _method:'put',
-        name:form.name,
-        image:form.image
+    router.post(`/skills/ ${props.skill.id}`, {
+        _method: "put",
+        name: form.name,
+        image: form.image,
     });
 };
 </script>
 
 <template>
-
-<Head title="Edit Skills" />
+    <Head title="Edit Skills" />
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            <h2
+                class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight"
+            >
                 Edit Skills
             </h2>
         </template>
@@ -50,7 +50,10 @@ const submit = () => {
                             autofocus
                             autocomplete="username"
                         />
-                        <InputError class="mt-2" :message="$page.props.errors.name" />
+                        <InputError
+                            class="mt-2"
+                            :message="$page.props.errors.name"
+                        />
                     </div>
                     <div class="mt-2">
                         <InputLabel for="image" value="Image" />
@@ -60,12 +63,18 @@ const submit = () => {
                             class="mt-1 block w-full"
                             @input="form.image = $event.target.files[0]"
                         />
-                        <InputError class="mt-2" :message="$page.props.errors.image" />
+                        <InputError
+                            class="mt-2"
+                            :message="$page.props.errors.image"
+                        />
                     </div>
-                    
 
                     <div class="flex items-center justify-end mt-4">
-                        <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                        <PrimaryButton
+                            class="ml-4"
+                            :class="{ 'opacity-25': form.processing }"
+                            :disabled="form.processing"
+                        >
                             Update
                         </PrimaryButton>
                     </div>
@@ -74,6 +83,3 @@ const submit = () => {
         </div>
     </AuthenticatedLayout>
 </template>
-
-
-
